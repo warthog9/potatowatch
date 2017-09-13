@@ -96,13 +96,14 @@ function calcDate( element, text, datestr ){
 	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-	// Display the result in the element with id="demo"
-	document.getElementById(element).innerHTML = "<tr><td>"+ text +"</td><td bgcolor='yellow'> "+ days + "d " + hours + "h " + minutes + "m " + seconds + "s </td></tr>";
-
 	// If the count down is finished, write some text 
 	if (distance < 0) {
-	//clearInterval(x);
-	document.getElementById(element).innerHTML = "<tr><td>"+ text +"</td><td bgcolor='red'> Exceeded</td></tr>";
+		//clearInterval(x);
+		document.getElementById(element).innerHTML = " Exceeded";
+		document.getElementById(element).style.backgroundColor = "red";
+	} else {
+		document.getElementById(element).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+		document.getElementById(element).style.backgroundColor = "yellow";
 	}
 
 }
