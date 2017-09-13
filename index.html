@@ -97,12 +97,12 @@ function calcDate( element, text, datestr ){
 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 	// Display the result in the element with id="demo"
-	document.getElementById(element).innerHTML = text +" "+ days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+	document.getElementById(element).innerHTML = "<tr><td>"+ text +"</td><td bgcolor='yellow'> "+ days + "d " + hours + "h " + minutes + "m " + seconds + "s </td></tr>";
 
 	// If the count down is finished, write some text 
 	if (distance < 0) {
 	//clearInterval(x);
-	document.getElementById(element).innerHTML = text +" Exceeded";
+	document.getElementById(element).innerHTML = "<tr><td>"+ text +"</td><td bgcolor='red'> Exceeded</td></tr>";
 	}
 
 }
@@ -123,8 +123,10 @@ var x = setInterval(function() {
 	<div id="content">
 		<div class="bodytext">
 		<span class="headline">Not Yet</span><br>
+		<table border=0>
 		<p id="stage1"></p>
 		<p id="stage2"></p>
+		</table>
 		</div>
 	</div>
 </div>
