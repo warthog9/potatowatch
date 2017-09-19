@@ -4,15 +4,13 @@
 <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
 <title>Potato Watch - 2017</title>
 <style type="text/css" media="screen"><!--
-body 
-	{
+body {
 	color: white;
 	background-color: #003;
 	margin: 0px
-	}
+}
 
-#horizon		
-	{
+#horizon {
 	color: white;
 	background-color: transparent;
 	text-align: center;
@@ -24,10 +22,9 @@ body
 	overflow: visible;
 	visibility: visible;
 	display: block
-	}
+}
 
-#content	
-	{
+#content {
 	font-family: Verdana, Geneva, Arial, sans-serif;
 	background-color: transparent;
 	margin-left: -125px;
@@ -37,21 +34,18 @@ body
 	width: 250px;
 	height: 70px;
 	visibility: visible
-	}
+}
 
-.bodytext 
-	{
+.bodytext {
 	font-size: 14px
-	}
+}
 
-.headline 
-	{
+.headline {
 	font-weight: bold;
 	font-size: 48px
-	}
+}
 
-#footer 
-	{
+#footer {
 	font-size: 11px;
 	font-family: Verdana, Geneva, Arial, sans-serif;
 	text-align: center;
@@ -62,26 +56,50 @@ body
 	height: 20px;
 	visibility: visible;
 	display: block
-	}
+}
 
-a:link, a:visited 
-	{
+a:link, a:visited {
 	color: #06f;
 	text-decoration: none
-	}
+}
 
-a:hover 
-	{
+a:hover {
 	color: red;
 	text-decoration: none
-	}
+}
 
+
+#rightbar {
+	position: absolute;
+	width: 25%;
+	height: 100%;
+	right:0;
+	top:10%;
+	margin-bottom:0px;
+	margin-top:0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	background-color: #003;
+}
+
+#potatoProgress {
+	width: 100%;
+	background-color: grey;
+}
+
+#potatoBar {
+	width: 1%;
+	height: 30px;
+	background-color: green;
+}
 -->
 </style>
 <script type="text/javascript" src="/live.js"></script>
 <script>
 
-function calcDate( element, text, datestr ){
+function calcDate( element, text, datestr, overstr, overclr ){
 	// Get todays date and time
 	var now = new Date().getTime();
 
@@ -99,8 +117,8 @@ function calcDate( element, text, datestr ){
 	// If the count down is finished, write some text 
 	if (distance < 0) {
 		//clearInterval(x);
-		document.getElementById(element).innerHTML = " Exceeded";
-		document.getElementById(element).style.backgroundColor = "red";
+		document.getElementById(element).innerHTML = overstr;
+		document.getElementById(element).style.backgroundColor = overclr;
 	} else {
 		document.getElementById(element).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 		document.getElementById(element).style.backgroundColor = "yellow";
@@ -109,15 +127,36 @@ function calcDate( element, text, datestr ){
 
 }
 
+function move(whichBar) {
+    var elem = document.getElementById(whichBar);
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+}
+
+
 // Set the date we're counting down to
 // var countDownDate = new Date("Sep 12, 2017 12:00:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
-	calcDate( "stage1", "Stage 1:", "Sep 12, 2017 12:00:00 GMT-0700 (PDT)");
-	calcDate( "stage2", "Stage 2:", "Sep 18, 2017 20:00:00 GMT-0700 (PDT)");
+	calcDate( "stage1", "Stage 1:", "Sep 12, 2017 12:00:00 GMT-0700 (PDT)", "Exceeded", "red");
+	calcDate( "stage2", "Stage 2:", "Sep 18, 2017 20:00:00 GMT-0700 (PDT)", "Next part:", "blue");
 
 }, 1000);
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+	move( "potatoBar");
+
+}, 2000);
 </script>
 </head>
 <body>
@@ -130,12 +169,22 @@ var x = setInterval(function() {
 		<table border=0>
 		<tr><td>Stage 1:</td><td id="stage1"></td></tr>
 		<tr><td>Stage 2:</td><td id="stage2"></td></tr>
+		<tr><td colspan=2>
+			<div id="potatoProgress">
+				<div id="potatoBar">Preparing...</div>
+			</div>
+		</td></tr>
 		</table>
 		</div>
 	</div>
+
+
 </div>
 <div id="footer">
 	We will update this as news is available | <a href="https://github.com/warthog9/potatowatch">Code on Github</a>
+</div>
+<div id="rightbar">
+	<img src="temp_us_n.jpg" width="100%">
 </div>
 </body>
 </html>
