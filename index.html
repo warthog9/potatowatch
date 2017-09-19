@@ -94,6 +94,12 @@ a:hover {
 	height: 30px;
 	background-color: green;
 }
+
+#potatoComplete {
+	width: 100%;
+	background-color: green;
+}
+
 -->
 </style>
 <script type="text/javascript" src="/live.js"></script>
@@ -163,15 +169,20 @@ var x = setInterval(function() {
 <div id="horizon">
 	<div id="content">
 		<div class="bodytext">
-		<span class="headline">Not Yet</span><br>
+		<span class="headline">In Progress</span><br>
 		<!-- p id="stage1"></p -->
 		<!-- p id="stage2"></p -->
 		<table border=0>
 		<tr><td>Stage 1:</td><td id="stage1"></td></tr>
 		<tr><td>Stage 2:</td><td id="stage2"></td></tr>
 		<tr><td colspan=2>
+			<div id="potatoComplete">
+				<div id="potatoBarComplete">Preparing: Complete.</div>
+			</div>
+		</td></tr>
+		<tr><td colspan=2>
 			<div id="potatoProgress">
-				<div id="potatoBar">Preparing...</div>
+				<div id="potatoBar">Compressing...</div>
 			</div>
 		</td></tr>
 		</table>
